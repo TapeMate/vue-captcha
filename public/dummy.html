@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="script.js" defer></script>
+    <title>Captcha Dummy</title>
+  </head>
+  <body>
+    <div class="form-control">
+      <form>
+        <span class="captcha" id="word">EBLU</span>
+        <input id="captcha" type="text" placeholder="Enter Above Word" />
+        <input type="submit" id="submit" value="submit" />
+      </form>
+    </div>
+  </body>
+</html>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background: #333;
+  }
+  .form-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 4rem;
+    background: beige;
+  }
+  .captcha,
+  #captcha,
+  input {
+    padding: 1rem;
+  }
+</style>
