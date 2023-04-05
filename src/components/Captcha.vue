@@ -9,7 +9,13 @@
         placeholder="Enter Above Word"
         v-model="captcha"
       />
-      <input v-if="honeypot === true" id="" type="text" />
+      <input
+        v-if="honeypot === true"
+        id="captcha-repeat"
+        type="text"
+        placeholder="Repeat Above Word"
+        v-model="captchaRepeat"
+      />
       <input id="submit" type="submit" value="submit" />
     </form>
     <div class="captcha-response">
@@ -28,28 +34,30 @@ export default {
       passphrase: "blue",
       captcha: "",
       response: "",
+
       // set on true for honeypot render
-      honeypot: false,
+      honeypot: true,
+      captchaRepeat: "",
     };
   },
   methods: {
     onSubmit(e) {
       e.preventDefault();
-
       const captcha = this.captcha.toLowerCase();
+      const repeat = this.captchaRepeat;
 
-      if (captcha === this.passphrase) {
+      if (captcha === this.passphrase && repeat === "") {
         this.response = true;
-      } else if (captcha === this.botphrase.toLowerCase()) {
+      } else if (captcha === this.botphrase.toLowerCase() || captcha !== "") {
         this.response = false;
       } else {
-        console.log("try again");
         this.response = false;
       }
 
       this.emitResponse(this.response);
 
       this.captcha = "";
+      this.captchaRepeat = "";
     },
     emitResponse(value) {
       console.log("emitResponse");
@@ -66,6 +74,11 @@ export default {
   padding: 0;
   box-sizing: border-box;
   font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+#captcha-repeat {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
 }
 .captcha-response {
   display: flex;
