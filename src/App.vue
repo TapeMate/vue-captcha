@@ -1,48 +1,65 @@
 <template>
-  <Captcha />
-  <!-- <TestRequestData /> -->
+  <div class="component-wrapper">
+    <Captcha @captcha-response="getResponse" />
+    <!-- <div class="captcha-response">
+      <h5 class="success" v-if="captchaResponse === true">success</h5>
+      <h5 class="error" v-if="captchaResponse === false">error</h5>
+    </div> -->
+  </div>
 </template>
 
 <script>
-// import TestRequestData from "./components/TestRequestData.vue";
 import Captcha from "./components/Captcha.vue";
 
 export default {
   name: "App",
   components: {
-    // TestRequestData,
     Captcha,
+  },
+  data() {
+    return {
+      captchaResponse: "",
+    };
+  },
+  methods: {
+    getResponse(value) {
+      this.captchaResponse = value;
+      console.log(value);
+    },
   },
 };
 </script>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.form-control {
+<style scoped>
+.captcha-response {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100vh;
+  text-align: center;
 }
-form {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  padding: 4rem;
-  background: beige;
+.component-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 320px;
 }
-.captcha,
-#captcha,
-input {
-  padding: 1rem;
-}
-body {
+h5 {
+  margin: 0;
+  padding: 0.5rem;
   background: #333;
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+.success {
+  color: lime;
+}
+.error {
+  color: tomato;
+}
+
+body {
+  background: #777;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -50,7 +67,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  /* margin-top: 60px; */
   height: 100vh;
   width: 100vw;
 }
