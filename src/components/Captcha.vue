@@ -1,30 +1,57 @@
 <template>
   <div class="site-wrapper">
-    <form>
-      <span class="captcha"> EBLU </span>
-      <input id="captcha" type="text" placeholder="Enter Above Word" />
+    <form @submit="onSubmit">
+      <span class="captcha" id="passphrase">{{ botphrase }}</span>
+      <input
+        id="captcha"
+        type="text"
+        placeholder="Enter Above Word"
+        v-model="captcha"
+      />
       <input type="submit" value="submit" />
     </form>
-
-    <a href="#" id="bot">View as bot</a>
   </div>
 </template>
 
 <script>
 export default {
-  name: "HelloWorld",
-  props: {
-    msg: String,
+  name: "Captcha",
+  data() {
+    return {
+      botphrase: "EBLU",
+      passphrase: "blue",
+      captcha: "",
+    };
+  },
+  methods: {
+    onSubmit(e) {
+      e.preventDefault();
+
+      const captcha = this.captcha.toLowerCase();
+      console.log(captcha);
+
+      if (captcha === this.passphrase) {
+        console.log("success");
+      } else if (captcha === this.botphrase.toLowerCase()) {
+        console.log("hi bot");
+      } else {
+        console.log("try again");
+      }
+
+      this.captcha = "";
+    },
   },
 };
 </script>
 
 <style scoped>
 .page-wrapper {
-  padding: 5rem;
+  /* padding: 5rem; */
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -33,13 +60,13 @@ body {
 
 form {
   width: 320px;
-  border: 1px solid #fafafa;
-  padding: 5rem;
+  /* border: 1px solid #fafafa; */
+  padding: 2rem;
   background: #fafafa;
   color: #444;
-  border-radius: 3px;
+  /* border-radius: 3px; */
   display: inline-block;
-  margin-top: 30%;
+  /* margin-top: 30%; */
 }
 
 .captcha {

@@ -1,17 +1,17 @@
 <template>
-  <!-- <Captcha /> -->
-  <TestRequestData />
+  <Captcha />
+  <!-- <TestRequestData /> -->
 </template>
 
 <script>
-import TestRequestData from "./components/TestRequestData.vue";
-// import Captcha from "./components/Captcha.vue";
+// import TestRequestData from "./components/TestRequestData.vue";
+import Captcha from "./components/Captcha.vue";
 
 export default {
   name: "App",
   components: {
-    TestRequestData,
-    // Captcha,
+    // TestRequestData,
+    Captcha,
   },
 };
 </script>
